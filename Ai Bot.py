@@ -6,7 +6,7 @@ from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, Con
 # =============== Configuration ===============
 API_ID = 'YOUR_TELEGRAM_API_ID'
 API_HASH = 'YOUR_TELEGRAM_API_HASH'
-BOT_TOKEN = 'YOUR_BOT_TOKEN'
+BOT_TOKEN = '7695867957:AAEEvAgZ_OTJuaUn4aUhqRb8yxetaYRq4uY'
 
 TARGET_GROUP_ID = -1001234567890  # Your group ID
 
