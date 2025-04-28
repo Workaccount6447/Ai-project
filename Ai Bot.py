@@ -32,6 +32,13 @@ async def start_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     await update.message.reply_text(welcome_text)
 
+
+def replace_text(response: str) -> str:
+    response = response.replace("bisnu ray", "HANUMAN")
+    response = response.replace("smart util", "Smart Automations")
+    return response
+    
+
 # When a user sends a message to the bot (private chat)
 async def user_message_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message.chat.type != 'private':
