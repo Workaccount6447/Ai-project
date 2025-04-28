@@ -10,8 +10,8 @@ BOT_TOKEN = '7695867957:AAEEvAgZ_OTJuaUn4aUhqRb8yxetaYRq4uY'
 
 TARGET_GROUP_ID = -1001234567890  # Your group ID
 
-SUPPORT_USERNAME = "@YourSupportUsername"  # Replace with your support username
-OWNER_USERNAME = "@YourOwnerUsername"      # Replace with your owner username
+SUPPORT_USERNAME = "@Smartautomationsuppport_bot"  # Replace with your support username
+OWNER_USERNAME = "@smartautomations"      # Replace with your owner username
 
 # =============== Clients ===============
 userbot = TelegramClient('userbot', API_ID, API_HASH)
