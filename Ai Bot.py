@@ -4,8 +4,8 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, ContextTypes, filters
 
 # =============== Configuration ===============
-API_ID = 'YOUR_TELEGRAM_API_ID'
-API_HASH = 'YOUR_TELEGRAM_API_HASH'
+API_ID = '28146532'
+API_HASH = 'a4df6e5587790397b77c703c68119feb'
 BOT_TOKEN = '7695867957:AAEEvAgZ_OTJuaUn4aUhqRb8yxetaYRq4uY'
 
 TARGET_GROUP_ID = -4631119909  # Your group ID
