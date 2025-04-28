@@ -8,7 +8,7 @@ API_ID = 'YOUR_TELEGRAM_API_ID'
 API_HASH = 'YOUR_TELEGRAM_API_HASH'
 BOT_TOKEN = '7695867957:AAEEvAgZ_OTJuaUn4aUhqRb8yxetaYRq4uY'
 
-TARGET_GROUP_ID = -1001234567890  # Your group ID
+TARGET_GROUP_ID = -4631119909  # Your group ID
 
 SUPPORT_USERNAME = "@Smartautomationsuppport_bot"  # Replace with your support username
 OWNER_USERNAME = "@smartautomations"      # Replace with your owner username
