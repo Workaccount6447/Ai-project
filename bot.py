@@ -1,6 +1,7 @@
 # ========== Start a Dummy Web Server (for Health Checks) ==========
 import threading
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import logging
 
 def run_web_server():
     class SimpleHandler(BaseHTTPRequestHandler):
@@ -10,6 +11,7 @@ def run_web_server():
             self.wfile.write(b"Bot is running successfully.")
 
     server = HTTPServer(('', 8000), SimpleHandler)
+    logging.info("Starting health check server on port 8000...")
     server.serve_forever()
 
 # Start webserver in a separate thread
@@ -22,9 +24,9 @@ from telegram import Update, Bot
 from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, ContextTypes, filters
 
 # =============== Configuration ===============
-API_ID = '28146532'
-API_HASH = 'a4df6e5587790397b77c703c68119feb'
-BOT_TOKEN = '7695867957:AAEEvAgZ_OTJuaUn4aUhqRb8yxetaYRq4uY'  # <<-- Replace with your real bot token
+API_ID = '28146532'  # Replace with your real API ID
+API_HASH = 'a4df6e5587790397b77c703c68119feb'  # Replace with your real API Hash
+BOT_TOKEN = '7695867957:AAEEvAgZ_OTJuaUn4aUhqRb8yxetaYRq4uY'  # Replace with your real bot token
 
 TARGET_GROUP_ID = -4631119909  # Your group ID
 
@@ -60,6 +62,7 @@ async def user_message_handler(update: Update, context: ContextTypes.DEFAULT_TYP
 
     user = update.effective_user
     text = update.message.text
+    logging.info(f"Received message from {user.id}: {text}")
 
     sent_message = await userbot.send_message(
         entity=TARGET_GROUP_ID,
@@ -67,7 +70,7 @@ async def user_message_handler(update: Update, context: ContextTypes.DEFAULT_TYP
     )
 
     message_mapping[sent_message.id] = user.id
-    print(f"Mapped message {sent_message.id} to user {user.id}")
+    logging.info(f"Mapped message {sent_message.id} to user {user.id}")
 
 @userbot.on(events.MessageEdited(chats=TARGET_GROUP_ID))
 async def group_edit_handler(event):
@@ -83,26 +86,30 @@ async def group_edit_handler(event):
             chat_id=original_user_id,
             text=updated_message.text
         )
-        print(f"Sent final edited reply to user {original_user_id}")
+        logging.info(f"Sent final edited reply to user {original_user_id}")
 
 # =============== Main ===============
 
 async def main():
     await userbot.start()
-    print("Userbot Started")
+    logging.info("User   bot Started")
 
     await bot_app.initialize()
     await bot_app.start()
-    await bot_app.updater.start_polling()
+
+    # Register command handler
+    bot_app.add_handler(CommandHandler("start", start_handler))
+    bot_app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, user_message_handler))
 
     try:
+        await bot_app.updater.start_polling()
         await userbot.run_until_disconnected()
     finally:
-        print("Shutting down bot app...")
+        logging.info("Shutting down bot app...")
         await bot_app.updater.stop()
         await bot_app.stop()
         await bot_app.shutdown()
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
     asyncio.run(main())
-    
