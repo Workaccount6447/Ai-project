@@ -18,7 +18,7 @@ def respond_to_message(update: Update, context: CallbackContext) -> None:
 
 # Main function to start the bot
 def main() -> None:
-    updater = Updater("YOUR_TELEGRAM_BOT_TOKEN")  # Replace with your token
+    updater = Updater("7695867957:AAEEvAgZ_OTJuaUn4aUhqRb8yxetaYRq4uY")  # Replace with your token
     dispatcher = updater.dispatcher
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, respond_to_message))
     updater.start_polling()
