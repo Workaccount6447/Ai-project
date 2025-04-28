@@ -14,7 +14,8 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the bot script into the container
-COPY Ai\ Bot.py /app/
+COPY bot.py /app/
 
 # Command to run the bot script when the container starts
-CMD ["python", "Ai Bot.py"]
+CMD ["python", "bot.py"]
+
