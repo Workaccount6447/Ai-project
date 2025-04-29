@@ -1,0 +1,23 @@
+services:
+  uni-api:
+    container_name: uni-api
+    image: yym68686/uni-api:latest
+    ports:
+      - 8001:8000
+    volumes:
+      - ${API_YAML_PATH}:/home/api.yaml
+
+  mybot:
+    container_name: mybot
+    image: yym68686/chatgpt:latest
+    depends_on:
+      - uni-api
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - API=sk-KjjI60Yf0JFcsvgRmXqFwgGmWUd9GZnmi3KlvowmRWpWpQRo
+      - API_URL=http://uni-api:8000/v1/chat/completions
+      - GET_MODELS=True
+    volumes:
+      - ./user_configs:/home/user_configs
+    ports:
+      - 8080:8080
